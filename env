@@ -1,2 +1,1 @@
-# replace the key then cp env .env
-CF_API_KEY=REPLACE_ME
+CF_API_KEY='REPLACE_INSIDE_QUOTES'

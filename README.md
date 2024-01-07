@@ -2,9 +2,11 @@
 
 This is a dockerized curseforge server for minecraft 1.12.2.
 
-It's compatible with [this pack](https://github.com/jagprog5/modpack-client).
+```bash
+git clone --recurse-submodules https://github.com/jagprog5/modpack-server
+```
 
-## Running
+It pulls from [this pack](./modpack-client/).
 
 Create the env file:
 
@@ -14,8 +16,17 @@ cp env .env
 
 Then, get a [curseforge api key](https://console.curseforge.com/) and put it in the `.env` file.
 
-Start it up:
+
+Commands (thin wrapper around docker-compose):
 
 ```bash
-
+make start # start it
+make enter # console
+make stop # stop it
 ```
+
+## Startup
+
+The server is configured to auto stop when idle for too long. This necessitates a startup mechanism.
+
+TODO

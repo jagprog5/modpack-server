@@ -2,22 +2,41 @@ version: "3"
 
 services:
   mc:
-    image: itzg/minecraft-server
+    image: itzg/minecraft-server:java8-multiarch
+
+    # needed with autostop
+    restart: no
     tty: true
     stdin_open: true
     ports:
       - "25565:25565"
     environment:
       EULA: "true"
-      TYPE: FORGE
+      TYPE: AUTO_CURSEFORGE
       CF_API_KEY: ${CF_API_KEY}
+      FORGE_VERSION: "14.23.5.2860"
       VERSION: 1.12.2
-      REMOVE_OLD_MODS: "true"
+
+      # REMOVE_OLD_MODS: "true" # wait for issue resolution
+      ENABLE_ROLLING_LOGS:  "true"
+
+      ENABLE_AUTOSTOP: "true"
+      OVERRIDE_SERVER_PROPERTIES: "true"
+
+      # resource constraints
+      MAX_PLAYERS: "10"
+      MAX_MEMORY: "8G"
+      VIEW_DISTANCE: "8"
+
+      # game preference
+      CF_MODPACK_MANIFEST: /manifest.json
+      CF_SLUG: "custom"
+      DIFFICULTY: "hard"
+      LEVEL: "word-data"
+
     volumes:
-      - data:/data
-      - ./mods.txt:/extras/mods.txt:ro
+      - ./data:/data
+      - ./modpack-client/manifest.json:/manifest.json:ro
+
     env_file:
       - .env
-
-volumes:
-  data:
