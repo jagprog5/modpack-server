@@ -1,0 +1,17 @@
+# /etc/systemd/system/minecraft-startup-listener.service
+[Unit]
+Description=minecraft startup listener
+After=network.target
+
+StartLimitInterval=1000
+StartLimitBurst=5
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+# changes path based on repo placement
+ExecStart=/home/john/modpack-server/listener/target/release/listener
+
+[Install]
+WantedBy=multi-user.target

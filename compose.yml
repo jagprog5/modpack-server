@@ -17,7 +17,8 @@ services:
       FORGE_VERSION: "14.23.5.2860"
       VERSION: 1.12.2
 
-      # REMOVE_OLD_MODS: "true" # wait for issue resolution
+      # wait for https://github.com/itzg/docker-minecraft-server/issues/2530
+      # REMOVE_OLD_MODS: "true"
       ENABLE_ROLLING_LOGS:  "true"
 
       ENABLE_AUTOSTOP: "true"
