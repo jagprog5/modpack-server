@@ -34,6 +34,7 @@ services:
       CF_SLUG: "custom"
       DIFFICULTY: "hard"
       LEVEL: "word-data"
+      ENABLE_WHITELIST: "true"
 
     volumes:
       - ./data:/data

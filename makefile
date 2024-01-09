@@ -12,4 +12,4 @@ stop:
 	docker-compose down
 
 enter:
-	docker exec -i `docker container ls | grep itzg/minecraft-server:java8-multiarch | cut -d' ' -f1` rcon-cli
+	docker exec -i modpack-server-mc-1 rcon-cli

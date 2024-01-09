@@ -28,4 +28,4 @@ make stop # stop it
 
 ## Startup
 
-The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25575 and calls the above `make start` when a GET is received.
+The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25575 and calls the above `make start` when a GET is received (this can be called any number of times, it's only effective if the server is not already running).
