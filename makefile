@@ -1,5 +1,5 @@
-# this can be safely called repeatedly. no need to rate limit or throttle. it only does something if it isn't already running
 start:
+	(cd modpack-client && rm -f profile.zip && zip -r profile.zip manifest.json overrides > /dev/null)
 	docker-compose up -d --remove-orphans
 
 # verbose alias for listener just in case something weird like the wrong makefile is called

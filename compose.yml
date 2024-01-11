@@ -17,8 +17,6 @@ services:
       FORGE_VERSION: "14.23.5.2860"
       VERSION: 1.12.2
 
-      # wait for https://github.com/itzg/docker-minecraft-server/issues/2530
-      # REMOVE_OLD_MODS: "true"
       ENABLE_ROLLING_LOGS:  "true"
 
       ENABLE_AUTOSTOP: "true"
@@ -30,7 +28,7 @@ services:
       VIEW_DISTANCE: "8"
 
       # game preference
-      CF_MODPACK_MANIFEST: /manifest.json
+      CF_MODPACK_ZIP: /profile.zip
       CF_SLUG: "custom"
       DIFFICULTY: "hard"
       LEVEL: "word-data"
@@ -38,7 +36,7 @@ services:
 
     volumes:
       - ./data:/data
-      - ./modpack-client/manifest.json:/manifest.json:ro
+      - ./modpack-client/profile.zip:/profile.zip:ro
 
     env_file:
       - .env
