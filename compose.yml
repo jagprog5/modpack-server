@@ -30,6 +30,8 @@ services:
       # game preference
       CF_MODPACK_ZIP: /profile.zip
       CF_SLUG: "custom"
+      # needed since incorrectly declared server side
+      CF_EXCLUDE_MODS: "244447"
       DIFFICULTY: "hard"
       LEVEL: "word-data"
       ENABLE_WHITELIST: "true"
