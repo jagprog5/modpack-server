@@ -18,7 +18,7 @@ Then, get a [curseforge api key](https://console.curseforge.com/) and put it in 
 
 ## Commands
 
-Thin wrapper around docker-compose:
+Thin wrapper around docker compose:
 
 ```bash
 make start # start it

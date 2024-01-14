@@ -15,7 +15,7 @@ make stop
 # clear server data
 mv data "data_replaced_on_`date +%s`"
 # replace the server data
-docker-compose run restore-backup restore-tar-backup
+docker compose run restore-backup restore-tar-backup
 
 make start
 
