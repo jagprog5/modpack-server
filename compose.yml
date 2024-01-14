@@ -30,7 +30,7 @@ services:
       # game preference
       CF_MODPACK_ZIP: /profile.zip
       CF_SLUG: "custom"
-      # needed since incorrectly declared server side
+      # needed since incorrectly declared as server side when it's only client side
       CF_EXCLUDE_MODS: "244447"
       DIFFICULTY: "hard"
       LEVEL: "word-data"
@@ -39,6 +39,10 @@ services:
         gamerule mobGriefing false
       RCON_CMDS_ON_CONNECT:  |-
         effect @a haste 100000 3 true
+    
+    depends_on:
+      restore-backup:
+        condition: service_completed_successfully
 
     volumes:
       - ./data:/data
@@ -46,3 +50,32 @@ services:
 
     env_file:
       - .env
+  
+  restore-backup:
+    image: itzg/mc-backup
+    restart: no
+    entrypoint: restore-tar-backup
+    volumes:
+      - ./data:/data
+      - ./data_backup:/backups:ro
+  
+  backups:
+    image: itzg/mc-backup
+    depends_on:
+      mc:
+        condition: service_healthy
+    environment:
+      RCON_HOST: mc
+      # backup created if server has been on for 4 hours,
+      # (equates to 4 - AUTOSTOP_TIMEOUT_EST player time)
+      # then it does another if continuously on every day.
+      # backups older than 7 days are deleted
+      INITIAL_DELAY: "4h"
+      BACKUP_INTERVAL: "1d"
+      PRUNE_BACKUPS_DAYS: 7
+
+      TAR_COMPRESS_METHOD: "zstd"
+      ZSTD_PARAMETERS: "-10 --long=25 --single-thread"
+    volumes:
+      - ./data:/data:ro
+      - ./data_backup:/backups

@@ -24,8 +24,11 @@ Thin wrapper around docker-compose:
 make start # start it
 make enter # console
 make stop # stop it
+
+make backup # create a backup now (already does it periodically)
+make restore-backup # replaces current world with latest backup
 ```
 
 ## Startup
 
-The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25575 and calls the above `make start` when a GET is received (this can be called any number of times, it's only effective if the server is not already running).
+The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25579 and calls the above `make start` when a GET is received (this can be called any number of times, it's only effective if the server is not already running).

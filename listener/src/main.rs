@@ -5,25 +5,25 @@ use std::{env, path::{Path, PathBuf}, process::Command};
 async fn index(data: Data<PathBuf>) -> HttpResponse {
     let repo_root: &Path = data.as_path(); // slice
     let r = Command::new("make")
-        .arg("start-minecraft-server")
+        .arg("start")
         .current_dir(repo_root)
         .spawn();
     if let Err(_) = r {
-        return HttpResponse::InternalServerError().body("failed spawn");
+        return HttpResponse::InternalServerError().body("failed spawn\n");
     }
     let r = r.unwrap().wait();
     if let Err(_) = r {
-        return HttpResponse::InternalServerError().body("failed run");
+        return HttpResponse::InternalServerError().body("failed run\n");
     }
     let r = r.unwrap().code();
     if let None = r {
-        return HttpResponse::InternalServerError().body("terminated by signal");
+        return HttpResponse::InternalServerError().body("terminated by signal\n");
     }
     let r = r.unwrap();
     if r != 0 {
-        HttpResponse::InternalServerError().body("nonzero exit")
+        HttpResponse::InternalServerError().body("nonzero exit\n")
     } else {
-        HttpResponse::Ok().finish()
+        HttpResponse::Ok().body("starting the server (unless it's already on)\n")
     }
 }
 
@@ -34,7 +34,7 @@ async fn main() -> std::io::Result<()> {
         repo_root.pop();
     }
     HttpServer::new(move || App::new().app_data(Data::new(repo_root.clone())).service(index))
-        .bind("0.0.0.0:25575")?
+        .bind("0.0.0.0:25579")?
         .run()
         .await
 }
