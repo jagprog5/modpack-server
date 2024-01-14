@@ -4,27 +4,11 @@ use std::{env, path::{Path, PathBuf}, process::Command};
 #[get("/")]
 async fn index(data: Data<PathBuf>) -> HttpResponse {
     let repo_root: &Path = data.as_path(); // slice
-    let r = Command::new("make")
+    let _ = Command::new("make")
         .arg("start")
         .current_dir(repo_root)
         .spawn();
-    if let Err(_) = r {
-        return HttpResponse::InternalServerError().body("failed spawn\n");
-    }
-    let r = r.unwrap().wait();
-    if let Err(_) = r {
-        return HttpResponse::InternalServerError().body("failed run\n");
-    }
-    let r = r.unwrap().code();
-    if let None = r {
-        return HttpResponse::InternalServerError().body("terminated by signal\n");
-    }
-    let r = r.unwrap();
-    if r != 0 {
-        HttpResponse::InternalServerError().body("nonzero exit\n")
-    } else {
-        HttpResponse::Ok().body("starting the server (unless it's already on)\n")
-    }
+    HttpResponse::Ok().body("attempting to start the server...\n")
 }
 
 #[actix_web::main]
