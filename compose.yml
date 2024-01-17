@@ -39,6 +39,7 @@ services:
       RCON_CMDS_STARTUP:  |-
         gamerule mobGriefing false
         gamerule commandBlockOutput false
+        gamerule logAdminCommands false
     
     depends_on:
       restore-backup:
