@@ -34,11 +34,11 @@ services:
       CF_EXCLUDE_MODS: "244447"
       DIFFICULTY: "hard"
       LEVEL: "word-data"
+      ENABLE_COMMAND_BLOCK: "true"
       ENABLE_WHITELIST: "true"
       RCON_CMDS_STARTUP:  |-
         gamerule mobGriefing false
-      RCON_CMDS_ON_CONNECT:  |-
-        effect @a haste 100000 3 true
+        gamerule commandBlockOutput false
     
     depends_on:
       restore-backup:
