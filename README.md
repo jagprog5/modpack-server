@@ -16,17 +16,22 @@ cp env .env
 
 Then, get a [curseforge api key](https://console.curseforge.com/) and put it in the `.env` file.
 
+Consider installing server functions (see `install-status-applier` below).
+
 ## Commands
 
 Thin wrapper around docker compose:
 
 ```bash
 make start # start it
+
+# all commands below should be invoked on a running server
 make enter # console
 make stop # stop it
 
 make backup # create a backup now (already does it periodically)
 make restore-backup # replaces current world with latest backup
+make install-status-applier # global status effects, see script for details + additional setup
 ```
 
 ## Startup

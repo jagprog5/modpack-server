@@ -20,6 +20,10 @@ services:
       ENABLE_ROLLING_LOGS:  "true"
 
       ENABLE_AUTOSTOP: "true"
+      # shouldn't be too small or else a backup could be created per startup
+      # 8 hours in seconds
+      AUTOSTOP_TIMEOUT_EST: 28800
+      AUTOSTOP_TIMEOUT_INIT: 28800
       OVERRIDE_SERVER_PROPERTIES: "true"
 
       # resource constraints
@@ -67,11 +71,8 @@ services:
         condition: service_healthy
     environment:
       RCON_HOST: mc
-      # backup created if server has been on for 4 hours,
-      # (equates to 4 - AUTOSTOP_TIMEOUT_EST player time)
-      # then it does another if continuously on every day.
-      # backups older than 7 days are deleted
-      INITIAL_DELAY: "4h"
+      # since this service waits for mc to be healthy, no initial delay is needed
+      INITIAL_DELAY: 0
       BACKUP_INTERVAL: "1d"
       PRUNE_BACKUPS_DAYS: 7
 

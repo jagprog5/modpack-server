@@ -12,4 +12,7 @@ backup:
 	docker compose exec backups backup now
 
 restore-backup:
-	./restore-backup.sh
+	./scripts/restore-backup.sh
+
+install-status-applier:
+	./scripts/install-status-applier.sh

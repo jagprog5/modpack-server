@@ -10,6 +10,8 @@ fi
 
 # prevent startup from happening during next operations
 sudo systemctl stop minecraft-startup-listener.service
+trap 'echo WARNING: minecraft-startup-listener.service was not restarted since the script erred' ERR
+
 # stop the server
 make stop
 # clear server data
@@ -19,5 +21,4 @@ docker compose run restore-backup restore-tar-backup
 
 make start
 
-# continue op
 sudo systemctl start minecraft-startup-listener.service
