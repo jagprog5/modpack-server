@@ -14,5 +14,5 @@ backup:
 restore-backup:
 	./scripts/restore-backup.sh
 
-install-status-applier:
-	./scripts/install-status-applier.sh
+install-functions:
+	./scripts/install-functions.sh

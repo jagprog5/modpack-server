@@ -16,7 +16,7 @@ cp env .env
 
 Then, get a [curseforge api key](https://console.curseforge.com/) and put it in the `.env` file.
 
-Consider installing server functions (see `install-status-applier` below).
+Consider installing server functions (see `install-functions` below).
 
 ## Commands
 
@@ -31,7 +31,7 @@ make stop # stop it
 
 make backup # create a backup now (already does it periodically)
 make restore-backup # replaces current world with latest backup
-make install-status-applier # global status effects, see script for details + additional setup
+make install-functions # see script for details
 ```
 
 ## Startup
