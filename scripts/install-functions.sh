@@ -35,4 +35,4 @@ docker compose restart
 echo "restarting. login again to complete the setup."
 echo "to ensure it worked, there are two things to check"
 echo -e "\t1. check that the status effects are being applied (check effects on you)"
-echo -e "\t2. check that the spot loader at the bottom of the cmd chunk is moving"
+echo -e "\t2. check that the spot loader at the bottom of the cmd chunk is moving (tp ~ 10 ~)"

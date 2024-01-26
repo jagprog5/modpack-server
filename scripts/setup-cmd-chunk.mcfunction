@@ -1,10 +1,6 @@
 # needs to bring a player there to load the chunk so it can be modified
 tp @s 100001 4096 100001
 
-# for limbo effect
-scoreboard objectives add in_limbo dummy
-scoreboard objectives add just_out_limbo dummy
-
 # global static effects
 scoreboard objectives add buff_timer dummy
 
