@@ -19,7 +19,7 @@ docker compose exec mc rcon-cli op Notch
 
 docker compose exec mc rcon-cli reload
 
-echo "LOGIN AND RUN:"
+echo "LOGIN as a player and RUN:"
 echo -e "\t/function modpack-server:setup-cmd-chunk"
 while true; do
     read -p "Enter 'yes' when prompted inside the game: " user_input
