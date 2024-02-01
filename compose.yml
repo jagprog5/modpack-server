@@ -28,7 +28,7 @@ services:
 
       # resource constraints
       MAX_PLAYERS: "10"
-      MAX_MEMORY: "8G"
+      MAX_MEMORY: "10G"
       VIEW_DISTANCE: "8"
       USE_AIKAR_FLAGS: "true"
 

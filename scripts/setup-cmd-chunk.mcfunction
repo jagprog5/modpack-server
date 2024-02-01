@@ -4,6 +4,12 @@ tp @s 100001 4096 100001
 # global static effects
 scoreboard objectives add buff_timer dummy
 
+# for owned wolf selection
+scoreboard objectives add wolf_owned dummy
+
+# for tamed horse selection
+scoreboard objectives add horse_tamed dummy
+
 fill 99984 0 99984 100031 10 100031 air
 fill 99984 10 99984 100031 20 100031 air
 fill 99984 20 99984 100031 30 100031 air
