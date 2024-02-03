@@ -42,7 +42,7 @@ services:
       ENABLE_COMMAND_BLOCK: "true"
       ENABLE_WHITELIST: "true"
       RCON_CMDS_STARTUP:  |-
-        gamerule mobGriefing false
+        # gamerule mobGriefing false DISABLED BY MOD
         gamerule commandBlockOutput false
         gamerule logAdminCommands false
     
