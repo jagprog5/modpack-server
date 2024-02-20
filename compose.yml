@@ -29,7 +29,7 @@ services:
       # resource constraints
       MAX_PLAYERS: "10"
       MAX_MEMORY: "10G"
-      VIEW_DISTANCE: "8"
+      VIEW_DISTANCE: "14"
       USE_AIKAR_FLAGS: "true"
 
       # game preference
@@ -38,7 +38,7 @@ services:
       # needed since incorrectly declared as server side when it's only client side
       CF_EXCLUDE_MODS: "244447"
       DIFFICULTY: "hard"
-      LEVEL: "word-data"
+      LEVEL: "world-data"
       ENABLE_COMMAND_BLOCK: "true"
       ENABLE_WHITELIST: "true"
       RCON_CMDS_STARTUP:  |-

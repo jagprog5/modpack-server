@@ -5,13 +5,13 @@
 # it is called by the command blocks which are created in the setup-cmd-chunk function (mentioned below)
 
 set -e
-if [ ! -d ./data/word-data/data/functions ]; then
+if [ ! -d ./data/world-data/data/functions ]; then
     exit 1
 fi
-mkdir -p ./data/word-data/data/functions/modpack-server
+mkdir -p ./data/world-data/data/functions/modpack-server
 
-cp ./scripts/apply-status-effects.mcfunction ./data/word-data/data/functions/modpack-server/apply-status-effects.mcfunction
-cp ./scripts/setup-cmd-chunk.mcfunction ./data/word-data/data/functions/modpack-server/setup-cmd-chunk.mcfunction
+cp ./scripts/apply-status-effects.mcfunction ./data/world-data/data/functions/modpack-server/apply-status-effects.mcfunction
+cp ./scripts/setup-cmd-chunk.mcfunction ./data/world-data/data/functions/modpack-server/setup-cmd-chunk.mcfunction
 docker compose exec mc rcon-cli reload
 
 echo "LOGIN as a player and RUN:"
