@@ -36,4 +36,6 @@ make install-functions # see script for details
 
 ## Startup
 
+This [setup](./listener/README.md) is optional. It can be skipped.
+
 The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25579 and calls the above `make start` when a GET is received (this can be called any number of times, it's only effective if the server is not already running).

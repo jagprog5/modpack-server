@@ -7,10 +7,18 @@ if [ "$answer" != "yes" ]; then
     exit 1
 fi
 
+if systemctl list-unit-files --state=enabled | grep -q 'minecraft-startup-listener.service'; then
+    startup_listener_installed=true
+else
+    startup_listener_installed=false
+fi
+
 
 # prevent startup from happening during next operations
-sudo systemctl stop minecraft-startup-listener.service
-trap 'echo WARNING: minecraft-startup-listener.service was not restarted since the script erred. start it if desired' ERR SIGINT SIGTERM
+if [ "$startup_listener_installed" = true ]; then
+    sudo systemctl stop minecraft-startup-listener.service
+    trap 'echo WARNING: minecraft-startup-listener.service was not restarted since the script erred. start it if desired' ERR SIGINT SIGTERM
+fi
 
 # stop the server
 docker compose down
@@ -20,4 +28,6 @@ mv data "data_replaced_on_`date +%s`"
 # loads the last saved data
 docker compose up -d --remove-orphans
 
-sudo systemctl start minecraft-startup-listener.service
+if [ "$startup_listener_installed" = true ]; then
+    sudo systemctl start minecraft-startup-listener.service
+fi

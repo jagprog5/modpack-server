@@ -8,4 +8,4 @@ To build:
 cargo build --release
 ```
 
-A systemctl service file is provided. Modify the ExecStart path and install it appropriately.
+A systemctl service file is provided. Modify the `ExecStart` path then install it appropriately.
