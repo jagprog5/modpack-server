@@ -23,7 +23,7 @@ fi
 # stop the server
 docker compose down
 # clear server data
-mv data "data_replaced_on_`date +%s`"
+if [ -d data ]; then mv data "data_replaced_on_$(date +%s)"; fi
 
 # loads the last saved data
 docker compose up -d --remove-orphans
