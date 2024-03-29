@@ -14,5 +14,6 @@ cp ./scripts/apply-status-effects.mcfunction ./data/world-data/data/functions/mo
 cp ./scripts/setup-cmd-chunk.mcfunction ./data/world-data/data/functions/modpack-server/setup-cmd-chunk.mcfunction
 docker compose exec mc rcon-cli reload
 
+echo "Note that the server can be very laggy on first join. Give it a couple minutes to level out. Then,"
 echo "LOGIN as a player and RUN:"
 echo -e "\t/function modpack-server:setup-cmd-chunk"
