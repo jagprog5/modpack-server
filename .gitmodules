@@ -1,3 +1,4 @@
 [submodule "modpack-client"]
 	path = modpack-client
 	url = https://github.com/jagprog5/modpack-client.git
+	branch = main
