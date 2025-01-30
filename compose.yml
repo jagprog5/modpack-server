@@ -29,10 +29,9 @@ services:
       # resource constraints
       MAX_PLAYERS: "10"
       MAX_MEMORY: "10G"
-      VIEW_DISTANCE: "14"
+      VIEW_DISTANCE: "10"
       USE_AIKAR_FLAGS: "true"
-      # 10 minutes. required due to weak server + recurrent complex startup
-      # it's fine after that though.
+      # some large number - 10 minutes
       MAX_TICK_TIME: "600000"
 
       # game preference
