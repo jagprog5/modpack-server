@@ -29,9 +29,11 @@ make start # start it
 make enter # console
 make stop # stop it
 
+# utility
 make backup # create a backup now (already does it periodically)
 make restore-backup # replaces current world with latest backup
-make install-functions # see script for details
+
+make install-functions # OPTIONAL setup see script for details
 ```
 
 ## Startup

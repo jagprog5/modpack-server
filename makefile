@@ -1,5 +1,5 @@
 start:
-	(cd modpack-client && rm -f profile.zip && zip -r profile.zip manifest.json overrides > /dev/null)
+	(cd modpack-client && ./scripts/export_profile.py profile.zip)
 	docker compose up -d --remove-orphans
 
 stop:

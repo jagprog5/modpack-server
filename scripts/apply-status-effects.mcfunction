@@ -1,5 +1,4 @@
 # global static buffs
-effect @e[type=player] minecraft:haste 11 3 true
 effect @e[type=villager_golem] minecraft:regeneration 11 1 true
 
 # slow regen (1 hp per 10 second)
