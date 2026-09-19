@@ -30,7 +30,6 @@ services:
       MAX_PLAYERS: "10"
       MAX_MEMORY: "10G"
       VIEW_DISTANCE: "10"
-      USE_AIKAR_FLAGS: "true"
       # some large number - 10 minutes
       MAX_TICK_TIME: "600000"
 
