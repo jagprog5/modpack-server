@@ -4,8 +4,11 @@ use std::{env, path::{Path, PathBuf}, process::Command};
 #[get("/")]
 async fn index(data: Data<PathBuf>) -> HttpResponse {
     let repo_root: &Path = data.as_path(); // slice
-    let _ = Command::new("make")
-        .arg("start")
+    let _ = Command::new("docker")
+        .arg("compose")
+        .arg("up")
+        .arg("-d")
+        .arg("--remove-orphans")
         .current_dir(repo_root)
         .spawn();
     HttpResponse::Ok().body("attempting to start the server...\n")

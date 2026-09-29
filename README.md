@@ -33,11 +33,24 @@ make stop # stop it
 make backup # create a backup now (already does it periodically)
 make restore-backup # replaces current world with latest backup
 
-make install-functions # OPTIONAL setup see script for details
+# OPTIONAL setup - see script for details (global status effects)
+make install-functions
 ```
 
 ## Startup
 
+### Pregen
+
+Recommend pregeneration of overworld:
+
+```
+worldborder center 0 0
+worldborder set 6400
+pregen start gen worldborder server_startup 0 NORMAL_GEN
+```
+
+### Expose server startup
+
 This [setup](./listener/README.md) is optional. It can be skipped.
 
-The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25579 and calls the above `make start` when a GET is received (this can be called any number of times, it's only effective if the server is not already running).
+The server is configured to auto stop when idle for too long. This necessitates a startup mechanism. [listener](./listener) contains a web server that listens to port 25579 and calls `docker compose up -d` when a GET is received (this can be called any number of times, it's only effective if the server is not already running).

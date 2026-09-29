@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mc:
-    image: itzg/minecraft-server:java8-multiarch
+    image: itzg/minecraft-server:java25
 
     # needed with autostop
     restart: no
@@ -12,12 +12,20 @@ services:
       - "25565:25565"
     environment:
       EULA: "true"
-      TYPE: AUTO_CURSEFORGE
-      CF_API_KEY: ${CF_API_KEY}
-      FORGE_VERSION: "14.23.5.2860"
-      VERSION: 1.12.2
 
-      ENABLE_ROLLING_LOGS:  "true"
+      TYPE: FORGE
+      VERSION: "1.12.2"
+
+      # https://github.com/CleanroomMC/Cleanroom/issues/638
+      FORGE_INSTALLER_URL: https://github.com/CleanroomMC/Cleanroom/releases/download/0.5.15-alpha/cleanroom-0.5.15-alpha-installer.jar
+      MODS: |
+        https://github.com/CleanroomMC/Fugue/releases/download/0.22.6/+Fugue-0.22.6.jar
+        https://github.com/CleanroomMC/Scalar/releases/download/2.11.1/scalar-1.12.2-2.11.1.jar
+
+      GENERIC_PACK: /pack.zip
+
+      ENABLE_ROLLING_LOGS: "true"
+      ROLLING_LOG_MAX_FILES: "5"
 
       ENABLE_AUTOSTOP: "true"
       # shouldn't be too small or else a backup could be created per startup
@@ -29,35 +37,29 @@ services:
       # resource constraints
       MAX_PLAYERS: "10"
       MAX_MEMORY: "10G"
-      VIEW_DISTANCE: "10"
+      VIEW_DISTANCE: "8"
       # some large number - 10 minutes
       MAX_TICK_TIME: "600000"
 
       # game preference
-      CF_MODPACK_ZIP: /profile.zip
-      CF_SLUG: "custom"
-      # needed since incorrectly declared as server side when it's only client side
-      CF_EXCLUDE_MODS: "244447"
       DIFFICULTY: "hard"
       LEVEL: "world-data"
       ENABLE_COMMAND_BLOCK: "true"
       ENABLE_WHITELIST: "true"
-      RCON_CMDS_STARTUP:  |-
+        # RCON_CMDS_STARTUP:  |-
         # gamerule mobGriefing false DISABLED BY MOD
-        gamerule commandBlockOutput false
-        gamerule logAdminCommands false
-    
+        # other game rules also disabled by mod by default
+        # gamerule commandBlockOutput false
+        # gamerule logAdminCommands false
+
     depends_on:
       restore-backup:
         condition: service_completed_successfully
 
     volumes:
       - ./data:/data
-      - ./modpack-client/profile.zip:/profile.zip:ro
+      - ./pack.zip:/pack.zip:ro
 
-    env_file:
-      - .env
-  
   restore-backup:
     image: itzg/mc-backup
     restart: no
@@ -65,7 +67,7 @@ services:
     volumes:
       - ./data:/data
       - ./data_backup:/backups:ro
-  
+
   backups:
     image: itzg/mc-backup
     depends_on:
@@ -77,6 +79,7 @@ services:
       INITIAL_DELAY: 0
       BACKUP_INTERVAL: "1d"
       PRUNE_BACKUPS_DAYS: 7
+      PRUNE_BACKUPS_COUNT: 7
 
       TAR_COMPRESS_METHOD: "zstd"
       ZSTD_PARAMETERS: "-10 --long=25 --single-thread"
