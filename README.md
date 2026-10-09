@@ -44,10 +44,17 @@ make install-functions
 Recommend pregeneration of overworld:
 
 ```
-worldborder center 0 0
-worldborder set 6400
-pregen start gen worldborder server_startup 0 NORMAL_GEN
+make enter
+pregen start gen radius server_startup SQUARE 0 0 220 0 NORMAL_GEN
 ```
+
+That command pregenerates the overworld ~3500 blocks in each direction. It takes
+a couple hours to complete. The server is join-able while it's running, but will
+be laggy. The goal is to eliminate all server-side lag, and because of the
+complex structures in the overworld dimension (roguelike dungeons and recurrent
+complex and yung's better mineshafts, compounded together), exploring the
+overworld stutters at times. Nothing game breaking, but not ideal if fighting
+mobs at the same time. This isn't a problem in the other dimensions.
 
 ### Expose server startup
 
