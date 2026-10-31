@@ -13,14 +13,7 @@ services:
     environment:
       EULA: "true"
 
-      TYPE: FORGE
-      VERSION: "1.12.2"
-
-      # https://github.com/CleanroomMC/Cleanroom/issues/638
-      FORGE_INSTALLER_URL: https://github.com/CleanroomMC/Cleanroom/releases/download/0.5.15-alpha/cleanroom-0.5.15-alpha-installer.jar
-      MODS: |
-        https://github.com/CleanroomMC/Fugue/releases/download/0.22.6/+Fugue-0.22.6.jar
-        https://github.com/CleanroomMC/Scalar/releases/download/2.11.1/scalar-1.12.2-2.11.1.jar
+      TYPE: CLEANROOM
 
       GENERIC_PACK: /pack.zip
 
@@ -45,8 +38,7 @@ services:
       DIFFICULTY: "hard"
       LEVEL: "world-data"
       ENABLE_COMMAND_BLOCK: "true"
-      ENABLE_WHITELIST: "true"
-        # RCON_CMDS_STARTUP:  |-
+      ENABLE_WHITELIST: "false"
         # gamerule mobGriefing false DISABLED BY MOD
         # other game rules also disabled by mod by default
         # gamerule commandBlockOutput false
