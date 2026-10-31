@@ -21,8 +21,7 @@ services:
       ROLLING_LOG_MAX_FILES: "5"
 
       ENABLE_AUTOSTOP: "true"
-      # shouldn't be too small or else a backup could be created per startup
-      # 8 hours in seconds
+      # 8 hours
       AUTOSTOP_TIMEOUT_EST: 28800
       AUTOSTOP_TIMEOUT_INIT: 28800
       OVERRIDE_SERVER_PROPERTIES: "true"

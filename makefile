@@ -16,6 +16,3 @@ backup:
 
 restore-backup:
 	./scripts/restore-backup.sh
-
-install-functions:
-	./scripts/install-functions.sh
